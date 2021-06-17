@@ -40,4 +40,16 @@ public class SecuredController {
     public String doingSomething() {
         return "Did something";
     }
+
+    @GetMapping("/write-something")
+    @PreAuthorize("hasAuthority('SCOPE_spring-jwt-poc/poc.write')")
+    public String writeSomething() {
+        return "Wrote something";
+    }
+
+    @GetMapping("/no-one-has-access-to")
+    @PreAuthorize("hasAuthority('SCOPE_spring-jwt-poc/poc.outofscooe')")
+    public String noOneHasAccessTo() {
+        return "Can't reach here";
+    }
 }
